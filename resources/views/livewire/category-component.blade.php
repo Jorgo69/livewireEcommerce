@@ -23,7 +23,7 @@
                     <div class="col-lg-9">
                         <div class="shop-product-fillter">
                             <div class="totall-product">
-                                <p> We found <strong class="text-brand">{{$products->total()}}</strong> items for you!</p>
+                                <p> We found <strong class="text-brand">{{$products->total()}}</strong> items in the Category <strong class="text-brand"> {{$category_name}} </strong> for you!</p>
                             </div>
                             <div class="sort-by-product-area">
                                 <div class="sort-by-cover mr-10">
@@ -147,10 +147,10 @@
                             <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                             <ul class="categories">
                                 @forelse ( $categories as $category )
-                                    <li><a href="{{ route('product.category', ['slug' => $category->slug])}}">{{$category ->name}}</a></li>
-                                @empty
-                                    <li><a href="#">{{ __('Aucune Categories') }}</a></li>
-                                @endforelse
+                                <li><a href="{{ route('product.category', ['slug' => $category->slug])}}">{{$category ->name}}</a></li>
+                            @empty
+                                <li><a href="#">{{ __('Aucune Categories') }}</a></li>
+                            @endforelse
                             </ul>
                         </div>
                         <!-- Fillter By Price -->

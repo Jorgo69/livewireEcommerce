@@ -8,11 +8,14 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShopComponent extends Component
+class CategoryComponent extends Component
 {
     use WithPagination;
     // Pour la pagination
     public $pageSize = 12;
+
+    // Concernant la Category
+    public $slug;
 
     // Pour le tri 
     public $triEnCours = 'Par Defaut';
@@ -35,29 +38,39 @@ class ShopComponent extends Component
         $this->triEnCours = $tri;
     }
 
+    public function mount($slug)
+    {
+        $this->slug = $slug;
+    }
+
 
     public function render()
     {
+        $category = Category::where('slug', $this->slug)->first();
+        $category_id = $category->id;
+        $category_name = $category->name;
+
         if($this->triEnCours == 'Prix: Petit au Grand' )
         {
-        $products = Product::orderBy('regular_price', 'ASC')->paginate($this->pageSize);
+        $products = Product::where('category_id', $category_id)->orderBy('regular_price', 'ASC')->paginate($this->pageSize);
         }
         else if($this->triEnCours == 'Prix: Grand au Petit')
         {
-        $products = Product::orderBy('regular_price', 'DESC')->paginate($this->pageSize);
+        $products = Product::where('category_id', $category_id)->orderBy('regular_price', 'DESC')->paginate($this->pageSize);
         }
         else if($this->triEnCours == 'Nouveautés')
         {
-            $products = Product::orderBy('created_at', 'DESC')->paginate($this->pageSize);
+            $products = Product::where('category_id', $category_id)->orderBy('created_at', 'DESC')->paginate($this->pageSize);
         }else{
-            $products = Product::paginate($this->pageSize);
+            $products = Product::where('category_id', $category_id)->paginate($this->pageSize);
         }
         
         $categories = Category::orderBy('name', 'ASC')->get();
 
-        return view('livewire.shop-component', [
+        return view('livewire.category-component', [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
+            'category_name' => $category_name,
         ]);
     }
 }

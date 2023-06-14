@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\CartComponent;
+use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\DetailsComponent;
 use App\Http\Livewire\HomeComponent;
@@ -38,6 +39,8 @@ Route::get('/checkout', CheckoutComponent::class)->name('checkout');
 
 
 Route::get('details,{slug}', DetailsComponent::class)->name('details.products');
+
+Route::get('product_by_categories,{slug}', CategoryComponent::class)->name('product.category');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
