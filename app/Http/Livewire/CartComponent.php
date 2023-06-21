@@ -10,23 +10,23 @@ class CartComponent extends Component
     
     public function incrementQuantity($rowId)
     {
-        $product = Cart::get($rowId);
+        $product = Cart::instance('cart')->get($rowId);
         $qty = $product-> qty + 1;
-        Cart::update($rowId, $qty);
+        Cart::instance('cart')->update($rowId, $qty);
         $this->emitTo('cart-icon-component', 'refreshComponent');
     }
 
     public function decrementQuantity($rowId)
     {
-        $product = Cart::get($rowId);
+        $product = Cart::instance('cart')->get($rowId);
         $qty = $product-> qty - 1;
-        Cart::update($rowId, $qty);
+        Cart::instance('cart')->update($rowId, $qty);
         $this->emitTo('cart-icon-component', 'refreshComponent');
     }
 
     public function delete($id)
     {
-        Cart::remove($id);
+        Cart::instance('cart')->remove($id);
         session()->flash('delete', 'Produit Supprimer du Panier avec Success');
     }
     

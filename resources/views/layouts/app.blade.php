@@ -75,7 +75,32 @@
             </div>
         </div>
         
-        @livewire('cart-icon-component')
+        {{-- @livewire('cart-icon-component') --}}
+
+
+        {{-- Debut Icon --}}
+
+
+        <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="header-wrap">
+                    <div class="logo logo-width-1">
+                        <a href="index.html"><img src="assets/imgs/logo/logo.png" alt="logo"></a>
+                    </div>
+                    <div class="header-right">
+                        @livewire('header-search-component')
+                        <div class="header-action-right">
+                            <div class="header-action-2">
+                                @livewire('wishlist-icon-component')
+                                @livewire('cart-icon-component')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Fin Icon --}}
 
         <div class="header-bottom header-bottom-bg-color sticky-bar">
             <div class="container">

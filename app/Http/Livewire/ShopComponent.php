@@ -19,8 +19,9 @@ class ShopComponent extends Component
 
     public function store($product_id, $product_name, $product_price)
     {
-        Cart::add($product_id, $product_name, 1, $product_price)->associate(Product::class);
+        Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate(Product::class);
         session()->flash('success', 'Product Ajouter avec Success dans le Panier');
+        $this->emitTo('cart-icon-component', 'refreshComponent');
         return redirect()->route('shop.cart');
     }
 
@@ -33,6 +34,12 @@ class ShopComponent extends Component
     public function changeTri($tri)
     {
         $this->triEnCours = $tri;
+    }
+
+    public function addToWishlist($product_id, $product_name, $product_price)
+    {
+        Cart::instance('whishlist')->add($product_id, $product_name, 1, $product_price)->associate(Product::class);
+        $this->emitTo('wishlist-icon-component', 'refreshComponent'); 
     }
 
 

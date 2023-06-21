@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            @if (Cart::count() > 0)
+                            @if (Cart::instance('cart')->count() > 0)
 
                             @if (Session::has('success'))
                             <div class="alert alert-success text-center">
@@ -46,7 +46,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @foreach (Cart::content() as $Item)
+                                        @foreach (Cart::instance('cart')->content() as $Item)
                                             <tr>
                                                 <td class="image product-thumbnail"><img src="{{ asset('assets/imgs/shop/product-') }}{{$Item->model->id}}-2.jpg" alt="#"></td>
                                                 <td class="product-des product-name">
