@@ -42,6 +42,19 @@ class ShopComponent extends Component
         $this->emitTo('wishlist-icon-component', 'refreshComponent'); 
     }
 
+    public function removeFromWishlist($product_id)
+    {
+        foreach(Cart::instance('whishlist')->content() as $wItem)
+        {
+            if($wItem->id == $product_id)
+            {
+                Cart::instance('whishlist')->remove($wItem->rowId);
+                $this->emitTo('wishlist-icon-component', 'refreshComponent');
+                return;
+            }
+        }
+    }
+
 
     public function render()
     {
