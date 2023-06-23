@@ -52,7 +52,9 @@
                                             <td>{{++ $i}}</td>
                                             <td>{{ $category->name}}</td>
                                             <td>{{$category->slug}}</td>
-                                            <td></td>
+                                            <td>
+                                                <a type="button" href="{{ route('admin.category.edit', ['category_id'=>$category->id])}}" class="text-info">Modifier</a>
+                                            </td>
                                         </tr>
                                         @empty
                                             Aucune Categories
