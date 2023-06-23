@@ -23,7 +23,14 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                Les Categories
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Les Categories
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="{{ route('admin.category.add')}}" class="btn btn-success float-end"> Ajout de nouvelles Caegories </a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <table class="table-striped">
@@ -37,11 +44,12 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                            $i = 1;
+                                            // $i = 1;
+                                            $i = ($categories->currentPage() -1) * ($categories->perPage());
                                         @endphp
                                         @forelse ($categories as $category)
                                         <tr>
-                                            <td>{{$i ++}}</td>
+                                            <td>{{++ $i}}</td>
                                             <td>{{ $category->name}}</td>
                                             <td>{{$category->slug}}</td>
                                             <td></td>
