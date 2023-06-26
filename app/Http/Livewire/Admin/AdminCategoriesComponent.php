@@ -8,10 +8,20 @@ use Livewire\WithPagination;
 
 class AdminCategoriesComponent extends Component
 {
-    use WithPagination;
+    public $category_id;
 
+    use WithPagination;
+    
+    public function deleteCategory()
+    {
+        $category = Category::find($this->category_id);
+        $category->delete();
+        session()->flash('Admin_message', 'Categorie Supprimée avec Success');
+    }
     public function render()
     {
+        
+
         $categories = Category::orderBy('name', 'ASC')->paginate(5);
         return view('livewire.admin.admin-categories-component',[
             'categories' => $categories
