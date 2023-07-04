@@ -21,7 +21,7 @@
                                         <!-- MAIN SLIDES -->
                                         <div class="product-image-slider">
                                             <figure class="border-radius-10">
-                                                <img src="{{ asset('assets/imgs/shop/product-') }}{{$product-> id}}-1.jpg" alt="{{ $product -> name}}">
+                                                <img src="{{ asset('assets/imgs/products')}}/{{$product->image}}" alt="{{ $product -> name}}">
                                             </figure>
                                             <figure class="border-radius-10">
                                                 <img src="{{asset('assets/imgs/shop/product-16-1.jpg') }}" alt="product image">
@@ -44,7 +44,7 @@
                                         </div>
                                         <!-- THUMBNAILS -->
                                         <div class="slider-nav-thumbnails pl-15 pr-15">
-                                            <div><img src="{{ asset('assets/imgs/shop/product-') }}{{$product-> id}}-1.jpg" alt="product image"></div>
+                                            <div><img src="{{ asset('assets/imgs/products')}}/{{$product->image}}" alt="product image"></div>
                                             <div><img src="{{asset('assets/imgs/shop/thumbnail-4.jpg') }}" alt="product image"></div>
                                             <div><img src="{{asset('assets/imgs/shop/thumbnail-5.jpg') }}" alt="product image"></div>
                                             <div><img src="{{asset('assets/imgs/shop/thumbnail-6.jpg') }}" alt="product image"></div>
@@ -435,7 +435,7 @@
                                                     <div class="product-img product-img-zoom">
                                                         <a href="{{ route('details.products', ["slug"=>$relatedProduct->slug])}}" tabindex="0">
                                                             {{-- <img class="default-img" src="{{ asset('assets/imgs/shop/product-2-1.jpg') }}" alt=""> --}}
-                                                            <img class="default-img" src="{{ asset('assets/imgs/shop/product-') }}{{$relatedProduct->id}}-1.jpg" alt="{{ $product -> name}}">
+                                                            <img class="default-img" src="{{ asset('assets/imgs/products')}}/{{$relatedProduct->image}}" alt="{{ $product -> name}}">
                                                             <img class="hover-img" src="{{ asset('assets/imgs/shop/product-') }}{{ $relatedProduct->id}}-2.jpg" alt="">
                                                         </a>
                                                     </div>
@@ -537,12 +537,12 @@
                             @forelse ($n_products  as $newProduct)
                             <div class="single-post clearfix">
                                 <div class="image">
-                                    <img src="{{ asset('assets/imgs/shop/product-') }}{{$newProduct->id}}-1.jpg" alt="{{ $newProduct -> name}}">
+                                    <img src="{{ asset('assets/imgs/products')}}/{{$newProduct->image}}" alt="{{ $newProduct -> name}}">
                                     {{-- <img src="{{asset('assets/imgs/shop/product-')}}{{$newProduct->id}}.jpg" alt="{{$newProduct->name}}"> --}}
                                      
                                 </div>
                                 <div class="content pt-10">
-                                    <h5><a href="{{ route('details.products', ["slug"=>$relatedProduct->slug] )}}">{{$newProduct->name}}</a></h5>
+                                    <h5><a href="{{ route('details.products', ["slug"=>$newProduct->slug] )}}">{{$newProduct->name}}</a></h5>
                                     <p class="price mb-0 mt-5">${{$newProduct->regular_price}}</p>
                                     <div class="product-rate">
                                         <div class="product-rating" style="width:90%"></div>

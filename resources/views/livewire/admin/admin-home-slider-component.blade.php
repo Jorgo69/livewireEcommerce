@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="{{ route('home.index')}}" rel="nofollow">Accueil</a>
-                    <span></span> Les Produits
+                    <span></span> Les Diapositions
                     {{-- <span></span> Your Cart --}}
                 </div>
             </div>
@@ -25,10 +25,10 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        Les Produits
+                                        Les Diapositions
                                     </div>
                                     <div class="col-md-6">
-                                        <a href="{{ route('admin.products.add')}}" class="btn btn-success float-end"> Ajout de nouveaux Produits </a>
+                                        <a href="{{ route('admin.home.slide.add')}}" class="btn btn-success float-end"> Ajout de nouveau diapo </a>
                                     </div>
                                 </div>
                             </div>
@@ -42,41 +42,42 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
                                             <th>Image</th>
-                                            <th>Stock</th>
-                                            <th>Prix</th>
-                                            <th>Categorie</th>
-                                            <th>Date</th>
+                                            <th>Premier Titre</th>
+                                            <th>Titre</th>
+                                            <th>Sous Titre</th>
+                                            <th>Offre</th>
+                                            <th>Lien</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php
-                                            // $i = 1;
-                                            $i = ($products->currentPage() -1) * ($products->perPage());
+                                            $i = 0;
+                                            // $i = ($slides->currentPage() -1) * ($slides->perPage());
                                         @endphp
-                                        @forelse ($products as $product)
+                                        @forelse ($slides as $slide)
                                         <tr>
                                             <td>{{++ $i}}</td>
-                                            <td>{{ $product->name}}</td>
-                                            <td><img src="{{ asset('assets/imgs/products')}}/{{$product->image}}" width="60" alt="{{ $product->name}}"></td>
-                                            {{-- <td><img src="{{ asset('assets/imgs/shop/product-') }}{{$product-> id}}-1.jpg" width="60" alt="{{ $product->name}}"></td> --}}
-                                            <td>{{$product->stock_status}}</td>
-                                            <td>{{$product->regular_price}}</td>
-                                            <td>{{$product->category->name}}</td>
-                                            <td>{{$product->created_at}}</td>
+                                            <td><img src="{{asset('assets/imgs/sliders')}}/{{ $slide->image}}" width="80"></td>
+                                            <td>{{$slide->top_title}}</td>
+                                            <td>{{$slide->title}}</td>
+                                            <td>{{$slide->sub_title}}</td>
+                                            <td>{{$slide->offer}}</td>
+                                            <td>{{$slide->link}}</td>
+                                            <td>{{$slide->status === 1 ? 'Active' : 'Inactive'}}</td>
                                             <td>
-                                                <a type="button" href="{{ route('admin.product.edit', ['product_id'=>$product->id])}}" class="text-info">Modifier</a>
-                                                <a href="#" onclick="deleteConfirmation({{$product->id}})" class="text-danger mx-2">Supprimer</a>
+                                                <a type="button" href="{{ route('admin.home.slide.edit', ['slide_id'=>$slide->id])}}" class="text-info">Modifier</a>
+                                                <a href="#" onclick="deleteConfirmation({{$slide->id}})" class="text-danger mx-2">Supprimer</a>
                                             </td>
                                         </tr>
                                         @empty
-                                            Aucun Produits
+                                            Aucune Categories
                                         @endforelse
                                     </tbody>
                                 </table>
-                                {{$products->links()}}
+                                
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,6 @@
     </main>
 </div>
 
-
 <div class="modal" id="deleteConfirmation">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -95,7 +95,7 @@
                     <div class="col-md-12 text-center">
                         <h4 class="pb-3">Voudrez vous vraiment y continuer?</h4>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteConfirmation">Annuler </button>
-                        <button type="button" class="btn btn-danger" onclick="deleteProduct()">Supprimer</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteCategory()">Supprimer</button>
                     </div>
                 </div>
             </div>
@@ -103,19 +103,16 @@
     </div>
 </div>
 
-
-
-
 @push('script')
     <script>
         function deleteConfirmation(id)
         {
-            @this.set('product_id', id);
+            @this.set('category_id', id);
             $('#deleteConfirmation').modal('show');
         }
-        function deleteProduct()
+        function deleteCategory()
         {
-            @this.call('deleteProduct');
+            @this.call('deleteCategory');
             $('#deleteConfirmation').modal('hide');
         }
     </script>

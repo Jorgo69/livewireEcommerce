@@ -35,7 +35,7 @@
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
                                                 <a href="{{ route('details.products', ["slug"=>$wItem->model->slug])}}">
-                                                    <img class="default-img" src="{{ asset('assets/imgs/shop/product-') }}{{$wItem->model-> id}}-1.jpg" alt="{{ $wItem->model ->name}}">
+                                                    <img class="default-img" src="{{ asset('assets/imgs/products') }}/{{$wItem->model->image}}" alt="{{ $wItem->model ->name}}">
                                                     <img class="hover-img" src="{{ asset('assets/imgs/shop/product-') }}{{ $wItem->model->id}}-2.jpg" alt="">
                                                 </a>
                                             </div>

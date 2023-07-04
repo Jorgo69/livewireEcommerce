@@ -297,7 +297,7 @@
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="{{ route('shop')}}">Shop</a></li>
                                     <li class="position-static"><a href="#">Our Collections <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="mega-menu">
+                                        {{-- <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
                                                 <a class="menu-title" href="#">Women's Fashion</a>
                                                 <ul>
@@ -351,7 +351,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </li>
                                     <li><a href="blog.html">Blog </a></li>                                    
                                     <li><a href="contact.html">Contact</a></li>
@@ -362,6 +362,7 @@
                                                     <li><a href="{{ route('admin.dashboard')}}">Dashboard</a></li>
                                                     <li><a href="{{ route('admin.products')}}">Products</a></li>
                                                     <li><a href="{{ route('admin.categories') }}">Categories</a></li>
+                                                    <li><a href="{{ route('admin.home.slider')}}">Management Diaposition</a></li>
                                                     <li><a href="#">Coupons</a></li>
                                                     <li><a href="#">Orders</a></li>
                                                     <li><a href="#">Customers</a></li>

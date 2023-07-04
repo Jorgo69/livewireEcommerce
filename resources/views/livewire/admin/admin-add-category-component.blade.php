@@ -47,6 +47,9 @@
                                     <div class="mb-3 mt-3">
                                         <label for="slug" class="form-label">Le Slug</label>
                                         <input type="text" name="slug" class="form-control" placeholder="Le slug" wire:model="slug" disabled />
+                                        @error('slug')
+                                            <p class="text-danger">{{$message}}</p>
+                                        @enderror
                                     </div>
                                     <button type="submit" class="btn btn-primary float-end">Creer</button>
                                 </form>
