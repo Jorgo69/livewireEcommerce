@@ -60,7 +60,7 @@
                                         @forelse ($slides as $slide)
                                         <tr>
                                             <td>{{++ $i}}</td>
-                                            <td><img src="{{asset('assets/imgs/sliders')}}/{{ $slide->image}}" width="80"></td>
+                                            <td><img src="{{asset('assets/imgs/slider')}}/{{ $slide->image}}" width="80" alt="{{$slide->title}}"></td>
                                             <td>{{$slide->top_title}}</td>
                                             <td>{{$slide->title}}</td>
                                             <td>{{$slide->sub_title}}</td>
@@ -95,7 +95,7 @@
                     <div class="col-md-12 text-center">
                         <h4 class="pb-3">Voudrez vous vraiment y continuer?</h4>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#deleteConfirmation">Annuler </button>
-                        <button type="button" class="btn btn-danger" onclick="deleteCategory()">Supprimer</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteSider()">Supprimer</button>
                     </div>
                 </div>
             </div>
@@ -107,12 +107,15 @@
     <script>
         function deleteConfirmation(id)
         {
-            @this.set('category_id', id);
+            // Ici capte le id qui etait affiche par le JS
+            @this.set('slide_id', id);
             $('#deleteConfirmation').modal('show');
         }
-        function deleteCategory()
+        // Ici c'est juste la fonction JS
+        function deleteSider()
         {
-            @this.call('deleteCategory');
+            // Ici fait appel a la fonction livewire 
+            @this.call('deleteSider');
             $('#deleteConfirmation').modal('hide');
         }
     </script>

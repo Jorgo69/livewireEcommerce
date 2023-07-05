@@ -48,7 +48,7 @@
                                         <label for="slug" class="form-label">Le Slug</label>
                                         <input type="text" name="slug" class="form-control" placeholder="Le slug" wire:model="slug" disabled />
                                     </div>
-                                    <button type="submit" class="btn btn-primary float-end">Creer</button>
+                                    <button type="submit" class="btn btn-primary float-end">Modifier</button>
                                 </form>
                             </div>
                         </div>
