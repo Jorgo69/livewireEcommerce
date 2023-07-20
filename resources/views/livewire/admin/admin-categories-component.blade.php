@@ -42,8 +42,10 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Slug</th>
+                                            <th>Populaire ?</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,8 +57,14 @@
                                         @forelse ($categories as $category)
                                         <tr>
                                             <td>{{++ $i}}</td>
+                                            <td><img src="{{ asset('assets/imgs/categories') }}/{{$category->image}}" alt="" width="40"></td>
                                             <td>{{ $category->name}}</td>
                                             <td>{{$category->slug}}</td>
+                                                    {{-- @php
+                                                        $popular = $category->is_popular;
+                                                    @endphp --}}
+                                            <td>{{ $category->is_popular == 1 ?'Oui' : 'Non' }}</td>
+                                                
                                             <td>
                                                 <a type="button" href="{{ route('admin.category.edit', ['category_id'=>$category->id])}}" class="text-info">Modifier</a>
                                                 <a href="#" onclick="deleteConfirmation({{$category->id}})" class="text-danger mx-2">Supprimer</a>

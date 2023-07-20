@@ -22,9 +22,30 @@ class CategoryComponent extends Component
 
     public function store($product_id, $product_name, $product_price)
     {
-        Cart::add($product_id, $product_name, 1, $product_price)->associate(Product::class);
+        Cart::instance('cart')->add($product_id, $product_name, 1, $product_price)->associate(Product::class);
         session()->flash('success', 'Product Ajouter avec Success dans le Panier');
+        $this->emitTo('cart-icon-component', 'refreshComponent');
         return redirect()->route('shop.cart');
+    }
+
+    public function addToWishlist($product_id, $product_name, $product_price)
+    {
+        Cart::instance('whishlist')->add($product_id, $product_name, 1, $product_price)->associate(Product::class);
+        $this->emitTo('wishlist-icon-component', 'refreshComponent'); 
+    }
+
+
+    public function removeFromWishlist($product_id)
+    {
+        foreach(Cart::instance('whishlist')->content() as $wItem)
+        {
+            if($wItem->id == $product_id)
+            {
+                Cart::instance('whishlist')->remove($wItem->rowId);
+                $this->emitTo('wishlist-icon-component', 'refreshComponent');
+                return;
+            }
+        }
     }
 
     

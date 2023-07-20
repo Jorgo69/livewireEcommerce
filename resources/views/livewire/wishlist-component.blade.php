@@ -21,8 +21,8 @@
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
-                    <a href="index.html" rel="nofollow">Home</a>
-                    <span></span> Shop
+                    <a href="{{ route('home.index')}}" rel="nofollow">Accueil</a>
+                    <span></span> Produit Souhaitez
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                                             <div class="product-img product-img-zoom">
                                                 <a href="{{ route('details.products', ["slug"=>$wItem->model->slug])}}">
                                                     <img class="default-img" src="{{ asset('assets/imgs/products') }}/{{$wItem->model->image}}" alt="{{ $wItem->model ->name}}">
-                                                    <img class="hover-img" src="{{ asset('assets/imgs/shop/product-') }}{{ $wItem->model->id}}-2.jpg" alt="">
+                                                    <img class="hover-img" src="{{ asset('assets/imgs/shop/product-') }}{{ $wItem->model->id}}-2.jpg" alt="{{ $wItem->model ->name}}">
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
@@ -54,11 +54,6 @@
                                                 <a href="shop.html">Music</a>
                                             </div>
                                             <h2><a href="product-details.html">{{ $wItem->model -> name}}</a></h2>
-                                            <div class="rating-result" title="90%">
-                                                <span>
-                                                    <span>90%</span>
-                                                </span>
-                                            </div>
                                             <div class="product-price">
                                                 <span>${{ $wItem->model -> regular_price}} </span>
                                                 <span class="old-price">$245.8</span>
@@ -70,7 +65,7 @@
                                     </div>
                                 </div>
                             @empty
-                                Rien pour le moment
+                                Aucun Produit de Souhait n'est ajouté
                             @endforelse
                 </div>
             </div>

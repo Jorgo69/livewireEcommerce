@@ -47,6 +47,31 @@
                                     <div class="mb-3 mt-3">
                                         <label for="slug" class="form-label">Le Slug</label>
                                         <input type="text" name="slug" class="form-control" placeholder="Le slug" wire:model="slug" disabled />
+                                        @error('slug')
+                                            <p class="text-danger">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="image" class="form-label">Une image</label>
+                                        <input type="file" name="image" class="form-control" placeholder="Le image" wire:model="newimage" />
+                                        @if ($newimage)
+                                            <img src="{{$newimage->temporaryUrl()}}" alt="" width="120">
+                                            @else
+                                            <img src="{{asset('asset/imgs/categories')}}/{{$image}}" alt="" width="120">
+                                        @endif
+                                        @error('newimage')
+                                            <p class="text-danger">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="is_popular" class="form-label">Populaire ?</label>
+                                        <select class="form-select" name="is_popular" id="is_popular" wire:model="is_popular">
+                                            <option value="0" selected> Non </option>
+                                            <option value="1"> Oui </option>
+                                        </select>
+                                        @error('is_popular')
+                                            <p class="text-danger">{{$message}}</p>
+                                        @enderror
                                     </div>
                                     <button type="submit" class="btn btn-primary float-end">Modifier</button>
                                 </form>

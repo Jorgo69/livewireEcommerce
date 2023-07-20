@@ -72,11 +72,14 @@ class ShopComponent extends Component
         }else{
             $products = Product::paginate($this->pageSize);
         }
+
+        $lastProduct = Product::orderBy('created_at', 'ASC')->get()->take(3);
         
         $categories = Category::orderBy('name', 'ASC')->get();
 
         return view('livewire.shop-component', [
             'products' => $products,
+            'lastProduct' => $lastProduct,
             'categories' => $categories
         ]);
     }

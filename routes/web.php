@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
@@ -60,6 +61,9 @@ Route::get('search', SearchComponent::class)->name('product.search');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('contact', [ContactController::class, 'contact'])->name('contact.vu');
+Route::post('contactUs', [ContactController::class, 'send'])->name('contact.send');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/user/dashbord', UserDashboardComponent::class)->name('user.dashboard');
